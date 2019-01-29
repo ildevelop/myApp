@@ -3,6 +3,9 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import Header from './src/components/Header/Header';
 import ListItems from './src/components/ListItems/ListItems';
+import {Provider} from 'react-redux'
+import store from './src/reducers/index'
+
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
   android:
@@ -15,16 +18,16 @@ export default class App extends Component{
     headerText:'Albums',
     items:[{name:'ilya'},{name:'tanya'}]
   }
-  componentDidMount(){
 
-  }
   render() {
     console.log('Hello');
     return (
-      <View>
-        <Header title={ this.state.headerText}/>
-        <ListItems/>
-      </View>
+      <Provider store={store}>
+        <View>
+          <Header title={ this.state.headerText}/>
+          <ListItems/>
+        </View>
+      </Provider>
     );
   }
 }

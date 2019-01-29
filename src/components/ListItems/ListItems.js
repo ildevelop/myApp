@@ -1,23 +1,24 @@
 import React, {Component} from 'react';
 import {Text, View,ScrollView ,Image} from 'react-native';
-import axios from 'axios'
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import * as mainActions from "../../actions/mainActions";
 import Item from '../ItemComponent/Item'
 class ListItems extends Component{
     state={
-        data:null
+        loading:false,
     }
     componentWillMount(){
-        axios.get('https://s3.amazonaws.com/devops-infra/public/MOCK_DATA.json').then(response=>{
-            console.log('response',response.data)
-            this.setState({data:response.data})
-        })
+        this.setState({loading:!this.state.loading});
+        this.props.getdata();
     }
     onPressItem = (item) => {
         console.log('Press on :',item)
-      }
+    };
     render(){
-        let items = this.state.data;
-        const textItems =items?items.map((item)=><Item key={item.id} item={item} onPressItem={this.onPressItem}/>):null
+        let items = this.props.data;
+        console.log('items',items)
+        const textItems =items?items.map((item)=><Item key={item.id} item={item} onPressItem={this.onPressItem}/>):<Text>Loading ...</Text>
         
         // <View key={item.id} >
         //         <Image style={{width: 50, height: 50}}
@@ -25,15 +26,22 @@ class ListItems extends Component{
         //         <Text>{item.property_name}</Text>
         //         <Text>{item.price}</Text>
         //     </View >):null
+      
         return(
             <ScrollView  >
-              <Text>Hello</Text>
-              {textItems}
-              <Text>End of Listings</Text>
-
+                  {textItems}
+                  <Text>End of Listings</Text>
             </ScrollView >
-        )
+        )   
     }
 }
 
-export default ListItems
+const mapStateToProps = state => ({
+    data:state.userReducer.data,
+    logdin:state.userReducer.logdin
+  });
+  function mapDispatchToProps(dispatch) {
+    return {...bindActionCreators(mainActions, dispatch)}
+  };
+  
+  export default connect(mapStateToProps,mapDispatchToProps)(ListItems);
