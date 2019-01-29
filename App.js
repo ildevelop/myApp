@@ -5,6 +5,7 @@ import Header from './src/components/Header/Header';
 import ListItems from './src/components/ListItems/ListItems';
 import {Provider} from 'react-redux'
 import store from './src/reducers/index'
+import SplashScreen from 'react-native-splash-screen'
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -18,7 +19,9 @@ export default class App extends Component{
     headerText:'Albums',
     items:[{name:'ilya'},{name:'tanya'}]
   }
-
+  componentDidMount(){
+    SplashScreen.hide()
+  }
   render() {
     console.log('Hello');
     return (
