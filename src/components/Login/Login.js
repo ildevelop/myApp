@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import bgImg from './../../../images/loginBG.jpg';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
+import SplashScreen from 'react-native-splash-screen'
 import * as mainActions from "../../actions/mainActions";
 const {width:WIDTH} = Dimensions.get('window');
 
@@ -21,10 +22,13 @@ class Login extends Component{
         let user = this.state.username;
         let pass = this.state.password;
         if(pass&&user){
-            this.props.loginUser({user,pass})
+            this.props.loginUser({user,pass});
+            SplashScreen.show();
+            this.props.navigation.navigate('Home')
         }
     }
     render(){
+    console.log('logdin',this.props.logdin);
     const {mainLogin,inpitStyle,inputIcon,inputIconEye,textBtn,btnLogin,errorText}= styles;
     return(
         <ImageBackground source={bgImg} style={mainLogin}>
@@ -71,6 +75,7 @@ function mapDispatchToProps(dispatch) {
 };
 const mapStateToProps = state => ({
     errorMessage:state.userReducer.errorMessage,
+    logdin:state.userReducer.logdin
     
   });
 export default connect(mapStateToProps,mapDispatchToProps)(Login);
