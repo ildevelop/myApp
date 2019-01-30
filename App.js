@@ -1,19 +1,15 @@
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
-import Header from './src/components/Header/Header';
-import Login from './src/components/Login/Login';
-import ListItems from './src/components/ListItems/ListItems';
+import Login from './src/Screens/Login/Login';
+import Greeting from './src/Screens/Home/Greeting';
+import Main from './src/Screens/Home/Main';
 import {Provider} from 'react-redux'
 import store from './src/reducers/index'
 import SplashScreen from 'react-native-splash-screen'
-import {createStackNavigator, createAppContainer,createDrawerNavigator,createSwitchNavigator} from 'react-navigation'
+import {createAppContainer,createDrawerNavigator,createSwitchNavigator} from 'react-navigation'
 
 export default class App extends Component{
-  state={
-    headerText:'Albums',
-    items:[{name:'ilya'},{name:'tanya'}]
-  }
+
   componentDidMount(){
     SplashScreen.hide()
   }
@@ -27,31 +23,16 @@ export default class App extends Component{
   } 
 }
 
-class Home extends Component{
-  componentDidMount(){
-    console.log('componentDidMount')
-    setTimeout(()=>{
-    SplashScreen.hide();
-    },2000)
-  }
-  render(){
-    return(
-        <View>
-          {/* <Login/> */}
-          <Header title={ "headerText"}/>
-          <ListItems/>
-        </View>
-    )
-  }
-}
 const AppDrawerNavigation = createDrawerNavigator({
-  Home:{screen:Home}
+  Main:{screen:Main}
 })
-
-
+const AppGreetingDrawerNavigation = createDrawerNavigator({
+  Greeting:{screen:Greeting}
+})
 const AppStackNavigator = createSwitchNavigator({
   Login:{screen:Login},
-  Home:{screen:AppDrawerNavigation}
+  Greeting:{screen:AppGreetingDrawerNavigation},
+  Main:{screen:AppDrawerNavigation}
 })
 
 const AppContainer = createAppContainer(AppStackNavigator)

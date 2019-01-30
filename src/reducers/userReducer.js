@@ -4,6 +4,7 @@ const initialState = {
   logdin: false,
   password: null,
   email: null,
+  name:null,
   errorMessage:null,
   data:null
 };
@@ -11,7 +12,7 @@ const initialState = {
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.SET_USER:
-    return {...state, logdin: true, password: action.payload.password, email: action.payload.email};
+    return {...state, logdin: true, password: action.payload.password, email: action.payload.email,name:action.payload.name};
     case actionTypes.SIGNOUT:
       return {...state, logdin: false, password: null, email: null};
     case actionTypes.ADD_DATA_ERROR:
