@@ -10,7 +10,6 @@ class ListItems extends Component{
     }
     componentWillMount(){
         this.setState({loading:!this.state.loading});
-        this.props.getdata();
     }
     onPressItem = (item) => {
         console.log('Press on :',item)

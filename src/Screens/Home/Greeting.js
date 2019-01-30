@@ -7,6 +7,7 @@ import {bindActionCreators} from "redux";
 import * as mainActions from "../../actions/mainActions";
 class Greeting extends Component{
     componentDidMount(){
+      this.props.getdata();
       setTimeout(()=>{
       SplashScreen.hide();
       },2000);

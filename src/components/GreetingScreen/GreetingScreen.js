@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View,Animated,Dimensions} from 'react-native';
-
+import SvgUri from 'react-native-svg-uri';
+import loader from '../../../images/loader.svg'
 const {width,height}= Dimensions.get('window')
 const GreetingScreen = (props)=>{
     const {mainGreeting,animView}= styles;
@@ -22,7 +23,13 @@ const GreetingScreen = (props)=>{
             <Animated.View style={[animView,{transform:[{translateX},{translateY}]}]}>
             <Text>Hi {props.username}</Text>
             <Text>enjoy our servise!</Text>
+               <SvgUri
+                width="100"
+                height="100"
+                source={loader}
+                />
             </Animated.View>
+         
         </View>
     )
 }
