@@ -1,6 +1,6 @@
 import * as actionTypes from "./../reducers/constant";
-import axios from 'axios'
-
+import axios from 'axios';
+import mockData from './users.json'
 
 export function getdata() {
     return async(dispatch)=>{
@@ -20,31 +20,28 @@ export function getdata() {
   }
 
 export function loginUser(user) {
-    return function async (dispatch) {
-      return VoteApi.login(user).then((res) => {
-        let body = res.data;
-        let newUser = {email:user.user.email};
-        if (body.status === "approved" && body !== null) {
-          localStorage.setItem('user', JSON.stringify({'token': body.token, 'user': user.user.email}));
-          newUser.userToken = body.token;
-          return dispatch({
-            type: actionTypes.SET_USER,
-            payload: newUser
-          })
-        } else {
-          return dispatch({
-            type: actionTypes.ERROR_LOGIN,
-          })
-        }
-  
-      }).catch(function (error) {
-        console.log('ERR here:', error);
-        return dispatch({
-          type: actionTypes.ERROR_LOGIN,
-        })
+  return function (dispatch) {
+    console.log('userMOCK',mockData);
+    console.log('user',user);
+    let checkUser = mockData.filter((item)=>{
+      return item.user===user.user && item.pass==user.pass
+    })
+    console.log('checkUser',checkUser);
+    if(checkUser.length>0){
+      console.log("YES");
+      // localStorage.setItem('user', JSON.stringify({'pass': user.pass, 'user': user.user}));
+      return dispatch({
+        type: actionTypes.SET_USER,
+        payload: user
+      })
+    }else{
+      console.log("NOT");
+      return dispatch({
+        type: actionTypes.ERROR_LOGIN,
       })
     }
   }
+}
   
 export function signout() {
     localStorage.removeItem('user');

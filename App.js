@@ -2,6 +2,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import Header from './src/components/Header/Header';
+import Login from './src/components/Login/Login';
 import ListItems from './src/components/ListItems/ListItems';
 import {Provider} from 'react-redux'
 import store from './src/reducers/index'
@@ -27,8 +28,9 @@ export default class App extends Component{
     return (
       <Provider store={store}>
         <View>
-          <Header title={ this.state.headerText}/>
-          <ListItems/>
+          <Login/>
+          {/* <Header title={ this.state.headerText}/>
+          <ListItems/> */}
         </View>
       </Provider>
     );
