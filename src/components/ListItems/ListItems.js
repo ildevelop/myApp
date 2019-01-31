@@ -12,20 +12,11 @@ class ListItems extends Component{
         this.setState({loading:!this.state.loading});
     }
     onPressItem = (item) => {
-        console.log('Press on :',item)
+        this.props.props.navigation.navigate('Detail',{item});
     };
     render(){
         let items = this.props.data;
-        console.log('items',items)
         const textItems =items?items.map((item)=><Item key={item.id} item={item} onPressItem={this.onPressItem}/>):<Text>Loading ...</Text>
-        
-        // <View key={item.id} >
-        //         <Image style={{width: 50, height: 50}}
-        //             source={{uri:item.avatar}}/>
-        //         <Text>{item.property_name}</Text>
-        //         <Text>{item.price}</Text>
-        //     </View >):null
-      
         return(
             <ScrollView  >
                   {textItems}

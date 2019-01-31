@@ -1,12 +1,10 @@
 import React from 'react';
 import {View} from 'react-native';
-import Header from '../../components/Header/Header';
 import ListItems from '../../components/ListItems/ListItems';
-const Main = ()=>{
+const Main = (props)=>{
     return(
         <View>
-            <Header title={"Main"}/>
-            <ListItems/>
+            <ListItems props={props}/>
       </View>
     )
 }

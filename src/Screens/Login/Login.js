@@ -85,7 +85,7 @@ class Login extends Component{
                 <TouchableOpacity style={btnLogin} onPress={()=>this.handleLogin()}>
                     <Text style={textBtn}>Login</Text>
                 </TouchableOpacity>
-                 <View style={this.props.errorMessage?errorText:null}>            
+                 <View style={this.props.errorMessage?errorText:null}>
                      <Text style={textBtn}>{this.props.errorMessage}</Text>
                 </View>
           </ImageBackground>
@@ -148,7 +148,6 @@ const styles={
     marginTop:10,
     width:WIDTH/2,
     height:45,
-    borderRadius:25,
     fontSize:16,
     borderWidth: 1,
     backgroundColor:'#dc293a',

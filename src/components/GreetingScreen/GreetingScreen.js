@@ -41,7 +41,7 @@ const styles={
         alignItems:'center'
      },
      animView:{
-         backgroundColor:'yellow',
+         backgroundColor:'#8b54ae',
          width,
          height,
          justifyContent:'center',
